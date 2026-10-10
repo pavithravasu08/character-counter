@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 50px;
+        }
+
+        .container {
+            background-color: white;
+            width: 400px;
+            max-width: 100%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+            resize: none;
+        }
+
+        .counter {
+            margin-top: 10px;
+            color: green;
+        }
+
+        .warning {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h2>Message Box</h2>
+
+        <p>200 characters max</p>
+
+        <textarea id="message"
+            placeholder="Type your message here..."
+            maxlength="200"></textarea>
+
+        <p id="counter" class="counter">
+            0/200 characters | 200 remaining
+        </p>
+
+        <p id="warning" class="warning"></p>
+    </div>
+
+    <script>
+        // Get the HTML elements
+        var message = document.getElementById("message");
+        var counter = document.getElementById("counter");
+        var warning = document.getElementById("warning");
+
+        // Set the maximum character limit
+        var maxCharacters = 200;
+
+        // Listen for the input event
+        message.addEventListener("input", function () {
+
+            // Count the characters typed
+            var typedCharacters = message.value.length;
+
+            // Calculate remaining characters
+            var remainingCharacters = maxCharacters - typedCharacters;
+
+            // Update the counter
+            counter.innerHTML = typedCharacters + "/" + maxCharacters + " characters | " + remainingCharacters + " remaining";
+
+            // Display warning when limit is reached
+            if (typedCharacters >= maxCharacters) {
+                warning.innerHTML = "Warning: Maximum character limit reached!";
+            } else {
+                warning.innerHTML = "";
+            }
+        });
+    </script>   
+    
+</body>
+</html>
